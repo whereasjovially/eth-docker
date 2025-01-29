@@ -80,3 +80,24 @@ while read x; do
    echo "Sent deposit for validator $account_name $pubkey"
    sleep 2
 done < "$DEPOSIT_DATAS_FILE_LOCATION.txt"
+
+cp -r ./assigned_data/{keys,secrets} ./../.eth/validator_keys
+./../ethd up
+
+# Timeout duration (in seconds)
+# TIMEOUT=60
+
+# Command to run
+# COMMAND="./../ethd keys import"
+
+# Run the command with a timeout
+# timeout $TIMEOUT $COMMAND
+
+# Check if the command timed out
+# if [ $? -eq 124 ]; then
+    # echo "The command timed out. Restarting..."
+    # You can put the command here to restart if needed
+    # $COMMAND
+# else
+    # echo "Command completed successfully."
+# fi
