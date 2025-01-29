@@ -11,7 +11,6 @@ fi
 source secrets.env
 
 eth2-val-tools deposit-data \
-  --as-json-list \
   --source-min=$ACC_START_INDEX \
   --source-max=$ACC_END_INDEX \
   --amount=$DEPOSIT_AMOUNT \
