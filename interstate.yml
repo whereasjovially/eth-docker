@@ -20,7 +20,7 @@ services:
       - "9062:9062" # builder proxy api pprt
       - "8018:8018" # Metircs port
     volumes: 
-      - ./.config/:/app/.env:ro
+      - ./interstate/.config/:/app/.env:ro
       - ./keystores:/app/keystores
       - ./delegations.json:/app/delegations.json
 
