@@ -31,15 +31,6 @@ eth2-val-tools keystores \
   --insecure \
   --source-mnemonic="$VALIDATORS_MNEMONIC"
 
-eth2-val-tools bls-address-change \
-  --as-json-list \
-  --source-min=$ACC_START_INDEX \
-  --source-max=$ACC_END_INDEX \
-  --fork-version=$FORK_VERSION \
-  --genesis-validators-root=$GENESIS_VALIDATORS_ROOT \
-  --withdrawals-mnemonic="$WITHDRAWALS_MNEMONIC" \
-  --execution-address="$EXECUTION_ADDRESS" > $SET_WITHDRAWAL_ADDRESS_FILE_LOCATION.txt
-
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
