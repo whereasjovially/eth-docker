@@ -1,1 +1,4 @@
-./secrets.env
+secrets.env
+/assigned_data
+/staking_deposit-cli-948d3fc-linux-amd64
+staking-deposit-cli.tar.gz
