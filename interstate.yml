@@ -21,7 +21,7 @@ services:
       - "8018:8018" # Metircs port
     volumes: 
       - ./interstate/.config/:/app/.env:ro
-      - ./keystores:/app/keystores
+      - ./.eth/validator_keys:/app/keystores
       - ./delegations.json:/app/delegations.json
 
 volumes:
