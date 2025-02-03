@@ -1,5 +1,7 @@
 #!/bin/bash
 
+node init_data.js
+
 # Download staking deposit CLI
 curl -L https://github.com/ethereum/staking-deposit-cli/releases/download/v2.8.0/staking_deposit-cli-948d3fc-linux-amd64.tar.gz -o staking-deposit-cli.tar.gz
 
@@ -8,7 +10,6 @@ tar -xvf staking-deposit-cli.tar.gz
 
 # Change directory to the extracted folder
 cd staking_deposit-cli-948d3fc-linux-amd64
-
 
 source ../secrets.env
 

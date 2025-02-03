@@ -21,7 +21,9 @@ const run = async () => {
       console.error("Error reading pubkeys:", error);
   }
 
-  console.log(indices, credentials);
+  console.log("indices:",indices);
+  console.log("credentials:",credentials);
+
   try {
     const envFilePath = path.join(__dirname, 'secrets.env');
     let envContent = fs.readFileSync(envFilePath, 'utf8');
