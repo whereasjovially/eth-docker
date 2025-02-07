@@ -4,8 +4,11 @@ const path = require('path');
 // Base directory where keys are stored
 const baseDir = './assigned_data/keys';
 const run = async () => {
-  let indices = [];
+
+  let credentialsObj = {};
   let credentials = [];
+  let indecies = [];
+
   try {
     // Get all directories inside the baseDir
     const pubkeys = fs.readdirSync(baseDir, { withFileTypes: true })
@@ -14,23 +17,25 @@ const run = async () => {
     for(let i=0 ; i<pubkeys.length ; i++){
       const pubkey = pubkeys[i];
       const validatorInfo = await await (fetch(`https://ethereum-holesky-beacon-api.publicnode.com/eth/v1/beacon/states/finalized/validators/${pubkey}`).then(res => res.json()))
-      indices.push(validatorInfo.data.index);
-      credentials.push(validatorInfo.data.validator.withdrawal_credentials);
+      credentialsObj[validatorInfo.data.index] = validatorInfo.data.validator.withdrawal_credentials;
+      indecies.push(validatorInfo.data.index)
     }
   } catch (error) {
       console.error("Error reading pubkeys:", error);
   }
+  indecies.sort((a,b) => a-b);
 
-  console.log("indices:",indices);
-  console.log("credentials:",credentials);
-
+  for(let i=0 ; i<indecies.length ; i++){
+    credentials.push(credentialsObj[indecies[i]])
+  }
+  console.log(indecies)
   try {
     const envFilePath = path.join(__dirname, 'secrets.env');
     let envContent = fs.readFileSync(envFilePath, 'utf8');
 
     envContent = envContent.replace(
       /VALIDATOR_INDICES=".*?"/, 
-      `VALIDATOR_INDICES="${indices.join(', ')}"`
+      `VALIDATOR_INDICES="${indecies.join(', ')}"`
     );
 
     envContent = envContent.replace(
