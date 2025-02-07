@@ -8,13 +8,6 @@ then
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
 fi
 
-echo "Installing eth2-val-tools"
-go install github.com/protolambda/eth2-val-tools@latest
-go install github.com/wealdtech/ethereal@latest
-export PATH=$PATH:$HOME/go/bin
-source ~/.bashrc
-
-
 source secrets.env
 
 eth2-val-tools deposit-data \
