@@ -1,6 +1,6 @@
 services:
   cb_pbs:
-    image: whereasjovially/interstate-pbs-module:0.5.1
+    image: interstatecrypto/interstate-commit-boost-module:latest
     container_name: cb_pbs
     ports:
       - 18550:18550
@@ -12,7 +12,7 @@ services:
       - ./interstate/cb-config.toml:/cb-config.toml:ro
 
   interstate-boost:
-    image: whereasjovially/interstate-boost:0.3.1
+    image: whereasjovially/interstate-boost:latest
     container_name: mev-sidecar-api
     restart: unless-stopped
     ports:
