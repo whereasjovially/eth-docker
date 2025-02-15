@@ -12,7 +12,7 @@ services:
       - ./interstate/cb-config.toml:/cb-config.toml:ro
 
   interstate-sidecar:
-    image: interstatecrypto/interstate-sidecar:latest
+    image: whereasjovially/interstate-boost:0.4.0-dev
     container_name: mev-sidecar-api
     restart: unless-stopped
     ports:
