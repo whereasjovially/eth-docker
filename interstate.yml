@@ -12,7 +12,7 @@ services:
       - ./interstate/cb-config.toml:/cb-config.toml:ro
 
   interstate-sidecar:
-    image: whereasjovially/interstate-boost:0.4.0-dev
+    image: whereasjovially/interstate-boost:0.4.1
     container_name: mev-sidecar-api
     restart: unless-stopped
     ports:
@@ -21,8 +21,9 @@ services:
       - "8018:8018" # Metircs port
     volumes: 
       - ./interstate/.config/:/app/.env:ro
-      - ./.eth/validator_keys:/app/keystores
       - ./delegations.json:/app/delegations.json
+      - ./interstate/tls/web3signer.crt:/app/tls/web3signer.crt
+      - ./interstate/tls/combined.pem:/app/tls/combined.pem
 
 volumes:
   prometheus-data:
