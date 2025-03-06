@@ -1,0 +1,32 @@
+services:
+  cb_pbs:
+    image: interstatecrypto/interstate-commit-boost-module:latest
+    container_name: cb_pbs
+    ports:
+      - 18550:18550
+    environment:
+      CB_CONFIG: /cb-config.toml
+      METRICS_SERVER: 10000
+      RUST_LOG: debug
+    volumes:
+      - ./cb-config.toml:/cb-config.toml:ro
+
+  interstate-sidecar:
+    image: whereasjovially/interstate-boost:0.4.1
+    container_name: mev-sidecar-api
+    restart: unless-stopped
+    ports:
+      - "9061:9061" # commitment RPC port
+      - "9062:9062" # builder proxy api pprt
+      - "8018:8018" # Metircs port
+    volumes: 
+      - ./.config/:/app/.env:ro
+      - ./delegations.json:/app/delegations.json
+      - ./tls/web3signer.crt:/app/tls/web3signer.crt
+      - ./tls/combined.pem:/app/tls/combined.pem
+
+volumes:
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local

@@ -27,3 +27,6 @@ ssv-config/dkg-config.yaml
 ssv-config/dkg-config.yaml.original
 commit-boost/cb-config.toml
 .nada
+interstate/tls/combined.pem
+interstate/tls/web3signer.crt
+interstate/delegations.json
